@@ -18,7 +18,6 @@
   "homepage": "https://github.com/ybasori/belajar_nodejs#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "composer": "^0.14.2",
     "ejs": "^2.5.7",
     "ejs-locals": "^1.0.2",
     "express": "^4.16.1",
