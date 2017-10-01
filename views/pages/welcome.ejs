@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                     <h3><%= results[i].title %></h3>
-                                    <p><%= results[i].body %></p>
+                                    <p><%= results[i].content %></p>
                             </div>
                             <div class="col-sm-6">
                                 <form action="/update/<%= results[i].id %>" method='post'  class="form-horizontal">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="form-input">
                                         <label for="" class="col-sm-3 control-label">Content</label>
-                                        <div class="col-sm-9"><textarea name="content" id="" cols="30" rows="1" rows="10" placeholder="Content" class="form-control"><%= results[i].body %></textarea></div>
+                                        <div class="col-sm-9"><textarea name="content" id="" cols="30" rows="1" rows="10" placeholder="Content" class="form-control"><%= results[i].content %></textarea></div>
                                     </div>
                                     <div class="form-input">
                                         <div class="col-sm-9 col-sm-offset-3">
