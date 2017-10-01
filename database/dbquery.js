@@ -11,10 +11,10 @@ module.exports.get=function(table, orderby, limit=null, offset=null){
         return 'SELECT * FROM '+table+' ORDER BY '+orderby+' LIMIT '+limit+' OFFSET '+offset;
     }
 };
-module.exports.delete=function(table, key, value){
-    return 'DELETE FROM '+table+' WHERE '+key+`= '`+value+`'`;
+module.exports.delete=function(table, where){
+    return 'DELETE FROM '+table+' WHERE '+where;
     // console.log(where.id);
 }
-module.exports.update=function(table, key, value){
-    return 'UPDATE '+table+' SET ? WHERE '+key+`='`+value+`'`;
+module.exports.update=function(table, where){
+    return 'UPDATE '+table+' SET ? WHERE '+where;
 };

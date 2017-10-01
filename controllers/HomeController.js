@@ -18,7 +18,7 @@ route.get('/', function(req, res){
     
 });
 route.get('/delete/:id', function(req, res){
-    var sql=db.delete('posts', 'id', req.params.id);
+    var sql=db.delete('posts', `id='`+req.params.id+`'`);
     conn().query(sql, (error, results)=>{
         if(error) throw error;
         res.redirect('/');
@@ -34,7 +34,7 @@ route.post('/update/:id', function(req, res){
         content:req.body.content,
         updated_at: datetime
     };
-    var sql=db.update('posts', 'id', req.params.id);
+    var sql=db.update('posts', `id='`+req.params.id+`'`);
     conn().query(sql, post, (error, results)=>{
         if(error) throw error;
         res.redirect('/');
