@@ -1,0 +1,78 @@
+<% layout('../layouts/layout') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <h1>Belajar Node JS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="/" method='post' class="form-horizontal">
+                        <div class="form-input">
+                            <label for="" class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                    <input type="text" name="title" placeholder="Title" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-input">
+                                <label for="" class="col-sm-3 control-label">Content</label>
+                                <div class="col-sm-9">
+                                        <textarea name="content" id="" cols="30" rows="1" placeholder="Content" class="form-control"></textarea>
+                                </div>
+                        </div>
+                        <div class="form-input">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                    <button class="btn btn-success" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <%= results.length %> record(s) found.
+                        </div>
+                    </div>
+                    <hr>
+                    <% for(var i=0; i< results.length; i++){ %>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <h3><%= results[i].title %></h3>
+                                    <p><%= results[i].body %></p>
+                            </div>
+                            <div class="col-sm-6">
+                                <form action="/update/<%= results[i].id %>" method='post'  class="form-horizontal">
+                                    <div class="form-input">
+                                        <label for="" class="col-sm-3 control-label">Title</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name='title' value='<%= results[i].title %>' placeholder="Title" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-input">
+                                        <label for="" class="col-sm-3 control-label">Content</label>
+                                        <div class="col-sm-9"><textarea name="content" id="" cols="30" rows="1" rows="10" placeholder="Content" class="form-control"><%= results[i].body %></textarea></div>
+                                    </div>
+                                    <div class="form-input">
+                                        <div class="col-sm-9 col-sm-offset-3">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                            <a href='delete/<%= results[i].id %>' class="btn btn-danger">delete</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
