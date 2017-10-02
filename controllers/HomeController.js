@@ -1,14 +1,15 @@
 var express = require('express');
-var route = express();
+var app = express();
+var route = express.Router();
 const conn = require('../database/connection');
 var db = require('../database/dbquery');
 var bodyParser = require('body-parser');
-route.use(bodyParser.json());
-route.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
-module.exports = route;
+module.exports = app;
 
-route.get('/', function(req, res){
+app.get('/', function(req, res){
     var sql=db.get('posts', 'created_at DESC');
     
     conn().query(sql, (error, results, fields)=>{
@@ -17,15 +18,15 @@ route.get('/', function(req, res){
     });
     
 });
-route.get('/delete/:id', function(req, res){
+app.delete('/delete/:id', function(req, res){
     var sql=db.delete('posts', `id='`+req.params.id+`'`);
     conn().query(sql, (error, results)=>{
         if(error) throw error;
-        res.redirect('/');
+        res.json(results);
     });
     
 });
-route.post('/update/:id', function(req, res){
+app.put('/update/:id', function(req, res){
     var d=new Date();
     var mt=d.getMonth()+1;
     var datetime=d.getFullYear()+'-'+mt+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
@@ -37,12 +38,12 @@ route.post('/update/:id', function(req, res){
     var sql=db.update('posts', `id='`+req.params.id+`'`);
     conn().query(sql, post, (error, results)=>{
         if(error) throw error;
-        res.redirect('/');
+        res.json(results);
     });
     // console.log(req.body.title);
     
 });
-route.post('/', function(req, res){
+app.post('/', function(req, res){
     var d=new Date();
     var mt=d.getMonth()+1;
     var datetime=d.getFullYear()+'-'+mt+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
@@ -55,6 +56,6 @@ route.post('/', function(req, res){
     var sql=db.insert('posts');
     conn().query(sql, post, (error, results)=>{
         if(error) throw error;
-        res.redirect('/');
+        res.json(results);
     });
 });

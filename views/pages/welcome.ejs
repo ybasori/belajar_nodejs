@@ -1,5 +1,7 @@
 <% layout('../layouts/layout') -%>
 
+<% script('/assets/js/welcome.js') -%>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -12,7 +14,7 @@
         <div class="col-sm-8">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="/" method='post' class="form-horizontal">
+                    <form id="save-post" class="form-horizontal">
                         <div class="form-input">
                             <label for="" class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
@@ -47,9 +49,11 @@
                             <div class="col-sm-6">
                                     <h3><%= results[i].title %></h3>
                                     <p><%= results[i].content %></p>
+                                    <button class="delete-post btn btn-danger" data-id="<%= results[i].id %>" type="submit">Delete</button>
+                                    
                             </div>
                             <div class="col-sm-6">
-                                <form action="/update/<%= results[i].id %>" method='post'  class="form-horizontal">
+                                <form class="update-post" action="/update/<%= results[i].id %>" method='post'  class="form-horizontal">
                                     <div class="form-input">
                                         <label for="" class="col-sm-3 control-label">Title</label>
                                         <div class="col-sm-9">
@@ -63,7 +67,6 @@
                                     <div class="form-input">
                                         <div class="col-sm-9 col-sm-offset-3">
                                             <button type="submit" class="btn btn-primary">Update</button>
-                                            <a href='delete/<%= results[i].id %>' class="btn btn-danger">Delete</a>
                                         </div>
                                     </div>
                                 </form>
